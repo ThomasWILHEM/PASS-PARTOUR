@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reservations
   get 'flights/index'
   get 'flights/show'
   get 'flights/new'
