@@ -1,5 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /reservations or /reservations.json
   def index
@@ -12,7 +13,8 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/new
   def new
-    @reservation = Reservation.new(flight_id: params[:flight_id], user_id: current_user.id)
+    @flight = Flight.find(params[:flight_id])
+    @reservation = Reservation.new(flight: @flight)
   end
 
   # GET /reservations/1/edit

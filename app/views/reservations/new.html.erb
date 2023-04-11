@@ -1,9 +1,30 @@
-<h1>New reservation</h1>
+<h1>Réserver un vol</h1>
 
-<%= render "form", reservation: @reservation %>
+<p><strong>Vol :</strong> <%= @flight.number %></p>
+<p><strong>Départ :</strong> <%= @flight.departure_airport %> à <%= @flight.departure_date.strftime('%d/%m/%Y %H:%M:%S') %></p>
+<p><strong>Arrivée :</strong> <%= @flight.arrival_airport %> à <%= (@flight.departure_date + @flight.duration.minutes).strftime('%d/%m/%Y %H:%M:%S') %></p>
 
-<br>
+<%= form_with(model: @reservation, local: true) do |form| %>
+  <% if @reservation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
 
-<div>
-  <%= link_to "Back to reservations", reservations_path %>
-</div>
+      <ul>
+        <% @reservation.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p><strong>User:</strong> <%= current_user.email %></p>
+
+  <div class="field">
+    <%= form.label :number_of_passengers %>
+    <%= form.number_field :number_of_passengers %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Réserver' %>
+  </div>
+<% end %>
