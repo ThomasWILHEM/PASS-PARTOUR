@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :reservations
+  resources :reservations, only: [:index, :show, :new, :create]
   get 'flights/index'
   get 'flights/show'
   get 'flights/new'

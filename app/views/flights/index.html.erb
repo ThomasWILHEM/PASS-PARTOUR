@@ -24,8 +24,7 @@
       <td><%= flight.economy_class_seats %></td>
       <td><%= flight.departure_date.strftime("%m/%d/%Y %I:%M %p") %></td>
       <td><%= flight.duration %></td>
-      <td><%= link_to "Reserve", new_reservation_path(flight_id: flight.id) %></td>
-    </tr>
+      <td><%= link_to "Reserve", new_reservation_path(flight_id: flight.id) %></td>    </tr>
   <% end %>
   </tbody>
 </table>

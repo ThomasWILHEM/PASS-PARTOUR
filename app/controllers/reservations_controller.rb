@@ -11,31 +11,26 @@ class ReservationsController < ApplicationController
   def show
   end
 
-  # GET /reservations/new
-  def new
-    @flight = Flight.find(params[:flight_id])
-    @reservation = Reservation.new(flight: @flight)
-  end
+
 
   # GET /reservations/1/edit
   def edit
   end
 
-  # POST /reservations or /reservations.json
-  def create
-    @reservation = Reservation.new(reservation_params)
-
-    respond_to do |format|
-      if @reservation.save
-        format.html { redirect_to reservation_url(@reservation), notice: "Reservation was successfully created." }
-        format.json { render :show, status: :created, location: @reservation }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @reservation.errors, status: :unprocessable_entity }
-      end
-    end
+  # GET /reservations/new
+  def new
+    @reservation = Reservation.new
+    @flight = Flight.find(params[:flight_id])
   end
 
+  def create
+    @reservation = current_user.reservations.build(reservation_params)
+    if @reservation.save
+      redirect_to @reservation, notice: 'Reservation was successfully created.'
+    else
+      render :new
+    end
+  end
   # PATCH/PUT /reservations/1 or /reservations/1.json
   def update
     respond_to do |format|
