@@ -1,17 +1,23 @@
-<div id="<%= dom_id reservation %>">
-  <p>
-    <strong>User:</strong>
-    <%= reservation.user_id %>
-  </p>
-
-  <p>
-    <strong>Flight:</strong>
-    <%= reservation.flight_id %>
-  </p>
-
-  <p>
-    <strong>Count:</strong>
-    <%= reservation.count %>
-  </p>
-
+<div class="reservation-card">
+  <div class="reservation-card__header">
+    <h2 class="reservation-card__title">Reservation</h2>
+  </div>
+  <div class="reservation-card__body">
+    <div class="reservation-card__item">
+      <div class="reservation-card__label">User:</div>
+      <div class="reservation-card__value"><%= reservation.user_id %></div>
+    </div>
+    <div class="reservation-card__item">
+      <div class="reservation-card__label">Flight:</div>
+      <div class="reservation-card__value"><%= reservation.flight_id %></div>
+    </div>
+    <div class="reservation-card__item">
+      <div class="reservation-card__label">Count:</div>
+      <div class="reservation-card__value"><%= reservation.count %></div>
+    </div>
+    <div class="reservation-card__item">
+      <div class="reservation-card__label">Type:</div>
+      <div class="reservation-card__value"><%= reservation.seat_class %></div>
+    </div>
+  </div>
 </div>

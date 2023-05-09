@@ -71,4 +71,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'will_paginate', '~> 3.1.0'
 end

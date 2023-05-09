@@ -29,8 +29,16 @@ class ReservationsController < ApplicationController
     seat_type = params[:reservation][:seat_class]
 
     if seat_type == 'business'
+      if @flight.business_class_seats < @reservation.count
+        @reservation.errors.add(:count, "Not enough available seats in business class.")
+        render :new and return
+      end
       @flight.update(business_class_seats: @flight.business_class_seats - @reservation.count)
     elsif seat_type == 'economy'
+      if @flight.economy_class_seats < @reservation.count
+        @reservation.errors.add(:count, "Not enough available seats in economy class.")
+        render :new and return
+      end
       @flight.update(economy_class_seats: @flight.economy_class_seats - @reservation.count)
     end
 
@@ -40,6 +48,7 @@ class ReservationsController < ApplicationController
       render :new
     end
   end
+
   # PATCH/PUT /reservations/1 or /reservations/1.json
   def update
     respond_to do |format|
