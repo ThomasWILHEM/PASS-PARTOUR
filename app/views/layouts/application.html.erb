@@ -11,6 +11,19 @@
   </head>
 
   <body>
+  <header>
+    <nav>
+      <ul class="menu">
+        <li><%= link_to "Réservations", reservations_path, class: "button" %></li>
+        <li><%= link_to "Vols", flights_path, class: "button" %></li>
+        <% if current_user %>
+          <li><%= link_to 'Déconnexion', destroy_user_session_path, method: :delete, class: "button" %></li>
+        <% else %>
+          <li><%= link_to "Connexion", new_user_session_path, class: "button" %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </header>
     <%= yield %>
   </body>
 </html>
