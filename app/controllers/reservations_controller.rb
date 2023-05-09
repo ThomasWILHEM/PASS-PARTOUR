@@ -25,6 +25,15 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = current_user.reservations.build(reservation_params)
+    @flight = Flight.find(params[:reservation][:flight_id])
+    seat_type = params[:reservation][:seat_class]
+
+    if seat_type == 'business'
+      @flight.update(business_class_seats: @flight.business_class_seats - @reservation.count)
+    elsif seat_type == 'economy'
+      @flight.update(economy_class_seats: @flight.economy_class_seats - @reservation.count)
+    end
+
     if @reservation.save
       redirect_to @reservation, notice: 'Reservation was successfully created.'
     else
@@ -62,6 +71,6 @@ class ReservationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def reservation_params
-      params.require(:reservation).permit(:user_id, :flight_id, :count)
+      params.require(:reservation).permit(:user_id, :flight_id, :count, :seat_class)
     end
 end

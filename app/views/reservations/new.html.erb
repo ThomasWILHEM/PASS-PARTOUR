@@ -19,6 +19,11 @@
     <%= form.number_field :count, class: 'form-control' %>
   </div>
 
+  <div class="field">
+    <%= form.label :seat_class %>
+    <%= form.select :seat_class, [['Affaires', 'business'], ['Economique', 'economy']], class: 'form-control' %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
