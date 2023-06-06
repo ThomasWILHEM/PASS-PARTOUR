@@ -66,6 +66,18 @@ class ReservationsController < ApplicationController
 
   # DELETE /reservations/1 or /reservations/1.json
   def destroy
+    @reservation = Reservation.find(params[:id])
+    flight = @reservation.flight
+
+    # Mise à jour des places du vol en ajoutant les places de la réservation supprimée
+    if @reservation.seat_class == 'business'
+      flight.business_class_seats += @reservation.count
+    elsif @reservation.seat_class == 'economy'
+      flight.economy_class_seats += @reservation.count
+    end
+
+    flight.save
+
     @reservation.destroy
 
     respond_to do |format|
