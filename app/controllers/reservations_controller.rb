@@ -26,6 +26,7 @@ class ReservationsController < ApplicationController
   def create
     @reservation = current_user.reservations.build(reservation_params)
     @flight = Flight.find(params[:reservation][:flight_id])
+    @user = current_user
     seat_type = params[:reservation][:seat_class]
 
     if seat_type == 'business'
@@ -43,6 +44,7 @@ class ReservationsController < ApplicationController
     end
 
     if @reservation.save
+      ReservationMailer.reservation_confirmation(@reservation, @flight, @user).deliver_now
       redirect_to @reservation, notice: 'Reservation was successfully created.'
     else
       render :new
