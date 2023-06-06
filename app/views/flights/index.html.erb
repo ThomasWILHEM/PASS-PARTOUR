@@ -9,7 +9,7 @@
     <th>Business class seats</th>
     <th>Economy class seats</th>
     <th>Departure date</th>
-    <th>Duration</th>
+    <th>Arrival date</th>
     <th></th>
   </tr>
   </thead>
@@ -23,7 +23,7 @@
       <td><%= flight.business_class_seats %></td>
       <td><%= flight.economy_class_seats %></td>
       <td><%= flight.departure_date.strftime("%m/%d/%Y %I:%M %p") %></td>
-      <td><%= flight.duration %></td>
+      <td><%= (flight.departure_date + flight.duration.minutes).strftime("%m/%d/%Y %I:%M %p") %></td>
       <td><%= link_to "Reserve", new_reservation_path(flight_id: flight.id), class: "button" %></td>
     </tr>
   <% end %>
