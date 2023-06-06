@@ -72,4 +72,7 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
   gem 'will_paginate', '~> 3.1.0'
+  gem 'actionmailer'
+  gem 'letter_opener_web', group: :development
+
 end

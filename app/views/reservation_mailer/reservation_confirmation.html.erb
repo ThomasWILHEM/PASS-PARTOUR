@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Confirmation de réservation</title>
+</head>
+<body>
+<h1>Confirmation de réservation</h1>
+<p>Bonjour <%= @user.email %>,</p>
+<p>Votre réservation pour le vol <%= @flight.number %> a été confirmée.</p>
+<p>Détails de la réservation :</p>
+<ul>
+  <li>Numéro de réservation : A DETERMINER</li>
+  <li>Départ : <%= @flight.departure_airport %> - <%= @flight.departure_date.strftime("%d/%m/%Y %H:%M") %></li>
+  <li>Arrivée : <%= @flight.arrival_airport %></li>
+  <li>Nombre de passagers : <%= @reservation.count %></li>
+</ul>
+</body>
+</html>
