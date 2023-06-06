@@ -1,0 +1,25 @@
+<div class="pagination">
+    <% if @flights.current_page > 1 %>
+      <div class="page-item">
+        <%= link_to "<<", url_for(params.permit(:controller, :action).merge(page: 1)), class: "page-link" %>
+      </div>
+      <div class="page-item">
+        <%= link_to "<", url_for(params.permit(:controller, :action).merge(page: @flights.current_page - 1)), class: "page-link" %>
+      </div>
+    <% end %>
+
+    <div class="page-item">
+      <div class="page-number">
+        <%= @flights.current_page %>
+      </div>
+    </div>
+
+    <% if @flights.current_page < @flights.total_pages %>
+      <div class="page-item">
+        <%= link_to ">", url_for(params.permit(:controller, :action).merge(page: @flights.current_page + 1)), class: "page-link" %>
+      </div>
+      <div class="page-item">
+        <%= link_to ">>", url_for(params.permit(:controller, :action).merge(page: @flights.total_pages)), class: "page-link" %>
+      </div>
+    <% end %>
+</div>
