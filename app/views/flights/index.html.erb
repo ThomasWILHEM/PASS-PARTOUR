@@ -41,20 +41,21 @@
         </tr>
         </thead>
 
-        <tbody>
-        <% @flights.each do |flight| %>
-          <tr>
-            <td><%= flight.number %></td>
-            <td><%= flight.departure_airport %></td>
-            <td><%= flight.arrival_airport %></td>
-            <td><%= flight.business_class_seats %></td>
-            <td><%= flight.economy_class_seats %></td>
-            <td><%= flight.departure_date.strftime("%m/%d/%Y %I:%M %p") %></td>
-            <td><%= flight.duration %></td>
-            <td><%= link_to "Reserve", new_reservation_path(flight_id: flight.id) %></td>    </tr>
-        <% end %>
+      <tbody>
+          <% @flights.each do |flight| %>
+            <tr>
+              <td><%= flight.number %></td>
+              <td><%= flight.departure_airport %></td>
+              <td><%= flight.arrival_airport %></td>
+              <td><%= flight.business_class_seats %></td>
+              <td><%= flight.economy_class_seats %></td>
+              <td><%= flight.departure_date.strftime("%m/%d/%Y %I:%M %p") %></td>
+              <td><%= (flight.departure_date + flight.duration.minutes).strftime("%m/%d/%Y %I:%M %p") %></td>
+              <td><%= link_to "Reserve", new_reservation_path(flight_id: flight.id), class: "button" %></td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
     </div>
-  </div>
-</section>
+
+<%= paginate @flights %>

@@ -1,6 +1,6 @@
 class FlightsController < ApplicationController
   def index
-    @flights = Flight.all
+    @flights = Flight.page(params[:page])
   end
 
   def show
