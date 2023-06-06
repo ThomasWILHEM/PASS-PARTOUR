@@ -10,7 +10,7 @@
 <p>Votre réservation pour le vol <%= @flight.number %> a été confirmée.</p>
 <p>Détails de la réservation :</p>
 <ul>
-  <li>Numéro de réservation : A DETERMINER</li>
+  <li>Numéro de réservation : <%= @reservation.pnr %></li>
   <li>Départ : <%= @flight.departure_airport %> - <%= @flight.departure_date.strftime("%d/%m/%Y %H:%M") %></li>
   <li>Arrivée : <%= @flight.arrival_airport %></li>
   <li>Nombre de passagers : <%= @reservation.count %></li>

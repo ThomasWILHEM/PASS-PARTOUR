@@ -43,6 +43,8 @@ class ReservationsController < ApplicationController
       @flight.update(economy_class_seats: @flight.economy_class_seats - @reservation.count)
     end
 
+    @reservation.update(pnr: SecureRandom.alphanumeric(6))
+
     if @reservation.save
       ReservationMailer.reservation_confirmation(@reservation, @flight, @user).deliver_now
       redirect_to @reservation, notice: 'Reservation was successfully created.'

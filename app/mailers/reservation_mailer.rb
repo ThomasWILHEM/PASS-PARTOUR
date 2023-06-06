@@ -5,6 +5,6 @@ class ReservationMailer < ApplicationMailer
     @reservation = reservation
     @flight = flight
     @user = user
-    mail(to: @user.email, subject: "Confirmation de réservation - Numéro #{@flight.number}")
+    mail(to: @user.email, subject: "Confirmation de réservation - Numéro #{@reservation.pnr}")
   end
 end
