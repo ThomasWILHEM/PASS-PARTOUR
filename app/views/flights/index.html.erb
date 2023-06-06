@@ -1,32 +1,60 @@
+<%= stylesheet_link_tag "reserve", "data-turbo-track": "reload" %>
+
 <h1 class="page-title">Flights</h1>
 
-<table class="table">
-  <thead>
-  <tr>
-    <th>Number</th>
-    <th>Departure airport</th>
-    <th>Arrival airport</th>
-    <th>Business class seats</th>
-    <th>Economy class seats</th>
-    <th>Departure date</th>
-    <th>Duration</th>
-    <th></th>
-  </tr>
-  </thead>
+<section class="Intro">
+  <div>
+    <img src="../images/logo.png">
+  </div>
+</section>
+<section class="sectionVols">
+  <div class="d-flex flex-column">
+    <h1>Les Vols</h1>
 
-  <tbody>
-  <% @flights.each do |flight| %>
-    <tr>
-      <td><%= flight.number %></td>
-      <td><%= flight.departure_airport %></td>
-      <td><%= flight.arrival_airport %></td>
-      <td><%= flight.business_class_seats %></td>
-      <td><%= flight.economy_class_seats %></td>
-      <td><%= flight.departure_date.strftime("%m/%d/%Y %I:%M %p") %></td>
-      <td><%= flight.duration %></td>
-      <td><%= link_to "Reserve", new_reservation_path(flight_id: flight.id), class: "button" %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+    <div class="wrapper">
+      <div class="outer">
+        <div class="content animated fadeInLeft">
+          <span class="bg animated fadeInDown">Class</span>
+          <span class="bg animated fadeInDown">Class</span>
+          <h1>Numéro<br/> villeDepart villeArrier</h1>
+          <p>date arriver</p>
+          <div class="button">
+            <a href="#">$115</a><a class="cart-btn" href="#"><i class="cart-icon ion-bag"></i>reserver</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
+
+    <div>
+      <table>
+        <thead>
+        <tr>
+          <th>Number</th>
+          <th>Departure airport</th>
+          <th>Arrival airport</th>
+          <th>Business class seats</th>
+          <th>Economy class seats</th>
+          <th>Departure date</th>
+          <th>Duration</th>
+          <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @flights.each do |flight| %>
+          <tr>
+            <td><%= flight.number %></td>
+            <td><%= flight.departure_airport %></td>
+            <td><%= flight.arrival_airport %></td>
+            <td><%= flight.business_class_seats %></td>
+            <td><%= flight.economy_class_seats %></td>
+            <td><%= flight.departure_date.strftime("%m/%d/%Y %I:%M %p") %></td>
+            <td><%= flight.duration %></td>
+            <td><%= link_to "Reserve", new_reservation_path(flight_id: flight.id) %></td>    </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
