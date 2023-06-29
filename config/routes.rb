@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   resources :flights
 
   devise_for :users
-
-  if Rails.env.development?
-    mount LetterOpenerWeb::Engine, at: "/letter_opener"
-  end
+  #
+  # if Rails.env.development?
+  #   mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  # end
 
   root to: 'flights#index'
 end

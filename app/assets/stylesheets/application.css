@@ -28,6 +28,8 @@
     padding: 1rem;
     background-color:#281842;
     margin: 0;
+    z-index: 500;
+    position: relative;
 }
 
 .menu li:last-child{
@@ -41,6 +43,7 @@ header{
     top: 0;
     position: fixed;
     width: 100%;
+    z-index: 500000;
 }
 
 .logo{
@@ -88,43 +91,21 @@ header{
     min-height: 100vh;
     background: #281842;
 }
-.page-title {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-size: 28px;
-    font-weight: bold;
+
+.d-flex{
+    display: flex !important;
 }
 
-.table {
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 800px;
-    margin-bottom: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+.flexColumn{
+    flex-direction: column;
 }
 
-.table th,
-.table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
+.justify-space-around{
+    justify-content: space-around !important;
 }
 
-.table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.table td:last-child {
-    text-align: center;
-}
-.logoImage{
-    background: url("logo.jpg");
-    background-size: cover;
-    height: 53px;
-    width: 60px;
+.m-5{
+    margin: 5px !important;
 }
 
 .pagination {
@@ -161,4 +142,42 @@ header{
 .pagination .page-item.disabled .page-link {
     pointer-events: none;
     opacity: 0.6;
+}
+
+.m-20{
+    margin: 20px!important;
+}
+
+.mt-10{
+    margin-top:5em;
+}
+
+.logoImage{
+    background:url("logo.jpg");
+    background-size: cover;
+    height: 50px;
+    width: 50px;
+}
+
+.page-link{
+    display: inline-block;
+    background-color: white;
+    color: #281842 !important;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.page-link:hover {
+    background-color: #5f428f !important;
+    color: white !important;
+}
+
+.page-link:active {
+    background-color: #5f428f !important;
+    color: white !important;
 }
