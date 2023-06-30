@@ -1,23 +1,37 @@
-<div class="reservation-card">
-  <div class="reservation-card__header">
-    <h2 class="reservation-card__title">Reservation n°<%= reservation.pnr %></h2>
-  </div>
-  <div class="reservation-card__body">
-    <div class="reservation-card__item">
-      <div class="reservation-card__label">User:</div>
-      <div class="reservation-card__value"><%= reservation.user_id %></div>
-    </div>
-    <div class="reservation-card__item">
-      <div class="reservation-card__label">Flight:</div>
-      <div class="reservation-card__value"><%= reservation.flight.number %></div>
-    </div>
-    <div class="reservation-card__item">
-      <div class="reservation-card__label">Count:</div>
-      <div class="reservation-card__value"><%= reservation.count %></div>
-    </div>
-    <div class="reservation-card__item">
-      <div class="reservation-card__label">Type:</div>
-      <div class="reservation-card__value"><%= reservation.seat_class %></div>
-    </div>
-  </div>
-</div>
+<%= stylesheet_link_tag "reservation", "data-turbo-track": "reload" %>
+<div class="container">
+  <div class="row d-flex justify-content-center mt-5">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+      <div class="card py-3 px-2">
+        <div class="division">
+          <div class="row">
+            <div class="connexion"><span>Reservation n°<%= reservation.pnr %></span></div>
+            <div class="col-3"><div class="line r"></div></div>
+          </div>
+
+          <% if @show %>
+            <div class="form-group">
+              <h3>Informations du vol</h3>
+              <label>Aéroport de départ : <%= @flight.departure_airport %></label><br>
+              <label>Aéroport d'arrivée : <%= @flight.arrival_airport %></label><br>
+              <label>Heure de départ : <%= @flight.departure_date.strftime("%m/%d/%Y %I:%M %p") %></label><br>
+              <label>Heure d'arrivée : <%= (@flight.departure_date + @flight.duration.minutes).strftime("%m/%d/%Y %I:%M %p") %></label><br>
+              <label>Numéro de vol : <%= @flight.number %></label><br>
+            </div>
+            <h2>Vos informations</h2>
+          <% else %>
+            <div class="form-group">
+              <label>Numéro de vol : <%= reservation.flight.number %></label>
+            </div>
+          <% end %>
+
+          <div class="reservation-card__body">
+            <div class="infos">
+              <div class="reservation-card__label texte-white">Nombre de places : </div>
+              <div class="reservation-card__value texte-white">&nbsp;<%= reservation.count %></div>
+            </div>
+            <div class="infos">
+              <div class="reservation-card__label texte-white">Type : </div>
+              <div class="reservation-card__value texte-white">&nbsp;<%= reservation.seat_class %></div>
+            </div>
+

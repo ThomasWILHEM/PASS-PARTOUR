@@ -1,44 +1,75 @@
-<h1 class="title">New Reservation</h1>
-
-<%= form_with(model: @reservation, local: true) do |form| %>
-  <% if current_user %>
-    <div class="field">
-      <%= form.label :user_id %>
-      <%= form.text_field :user_id, value: current_user.id, readonly: true %>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :flight_id %>
-    <%= form.hidden_field :flight_id, value: @flight.id %>
-    <%= @flight.number %>
-  </div>
-
-  <div class="field">
-    <%= form.label :seat_number %>
-    <%= form.number_field :count, class: 'form-control' %>
-  </div>
-
-  <% if @reservation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
-      <ul>
-        <% @reservation.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+<%= stylesheet_link_tag "reservation", "data-turbo-track": "reload" %>
+<div class="container">
+  <div class="row d-flex justify-content-center mt-5">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+      <div class="card py-3 px-2">
+        <div class="division">
+          <div class="row">
+            <div class="connexion"><span>Reservation</span></div>
+            <div class="col-3"><div class="line r"></div></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <h3>Informations du vol</h3>
+          <label>Aéroport de départ : <%= @flight.departure_airport %></label><br>
+          <label>Aéroport d'arrivée : <%= @flight.arrival_airport %></label><br>
+          <label>Heure de départ : <%= @flight.departure_date.strftime("%m/%d/%Y %I:%M %p") %></label><br>
+          <label>Heure d'arrivée : <%= (@flight.departure_date + @flight.duration.minutes).strftime("%m/%d/%Y %I:%M %p") %></label><br>
+          <label>Numéro de vol : <%= @flight.number %></label><br>
+          <label>Places buisness restantes : <%= @flight.business_class_seats %></label><br>
+          <label>Places économiques restantes : <%= @flight.economy_class_seats %></label>
+        </div>
+        <div class="form-group">
+          <h3>Vos informations</h3>
+          <label>Email : <%= current_user.email %></label><br>
+        </div>
+        <div class="division">
+          <div class="row">
+            <div class="col-3"><div class="line r"></div></div>
+          </div>
+        </div>
+        <%= form_with(model: @reservation, local: true) do |form| %>
+          <div class="hidden">
+            <% if current_user %>
+              <div class="form-group">
+                <%= form.label :user_id %>
+                <%= form.text_field :user_id, value: current_user.id, readonly: true %>
+              </div>
+            <% end %>
+            <div class="form-group">
+              <%= form.label :flight_id %>
+              <%= form.hidden_field :flight_id, value: @flight.id %>
+              <%= @flight.number %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= form.label :seat_number %>
+            <%= form.number_field :count, class: 'form-control', min: 1, max: 99,required: true%>
+          </div>
+            <% if @reservation.errors.any? %>
+            <div class="form-group">
+              <div id="error_explanation">
+                <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+                <ul>
+                  <% @reservation.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+            <% end %>
+          <div class="form-group">
+            <%= form.label :seat_class %>
+            <%= form.select :seat_class, [['Affaires', 'business'], ['Economique', 'economy']], class: 'form-control' %>
+          </div>
+          <div class="form-group mt-3">
+            <%= link_to 'Retour', reservations_path ,class: "btn btn-block btn-primary btn-lg" ,style: "width:100%"%>
+          </div>
+          <div class="form-group mt-3">
+            <%= form.submit "Reserver" ,class:"btn btn-block btn-primary btn-lg"%>
+          </div>
         <% end %>
-      </ul>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :seat_class %>
-    <%= form.select :seat_class, [['Affaires', 'business'], ['Economique', 'economy']], class: 'form-control' %>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-
-<% end %>
-
-<%= link_to 'Back', reservations_path %>
+</div>

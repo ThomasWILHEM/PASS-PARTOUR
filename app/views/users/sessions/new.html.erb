@@ -19,8 +19,49 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "Logzzzzz" %>
   </div>
 <% end %>
+
+<div class="container">
+  <div class="row d-flex justify-content-center mt-5">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+      <div class="card py-3 px-2">
+        </div>
+        <div class="division">
+          <div class="row">
+            <div class="col-6"><span>Connexion</span></div>
+            <div class="col-3"><div class="line r"></div></div>
+          </div>
+        </div>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-group">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
+          <div class="form-group">
+            <%= f.password_field :password, autocomplete: "current-password" %>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-12">
+              <div class="form-group form-check">
+                <% if devise_mapping.rememberable? %>
+                    <%= f.check_box :remember_me %>
+                    <%= f.label :remember_me %>
+                <% end %>
+<!--                <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
+<!--                <label class="form-check-label" for="exampleCheck1">Rester connecte</label>-->
+              </div>
+            </div>
+            <div class="col-md-6 col-12 bn">Mot se passe oublie</div>
+          </div>
+          <div class="form-group mt-3">
+            <%= f.submit "Logzzzzz" %>
+<!--            <button type="button" class="btn btn-block btn-primary btn-lg"><small><i class="far fa-user pr-2"></i>Se connecter</small></button>-->
+          </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
 <%= render "users/shared/links" %>
