@@ -4,7 +4,6 @@
 <%= render @reservation %>
 
 <div>
-  <%= link_to "Edit this reservation", edit_reservation_path(@reservation) %> |
   <%= link_to "Back to reservations", reservations_path %>
 
   <%= button_to "Destroy this reservation", @reservation, method: :delete %>
