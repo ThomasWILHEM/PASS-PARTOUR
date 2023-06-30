@@ -1,29 +1,30 @@
 <%= stylesheet_link_tag "reservation", "data-turbo-track": "reload" %>
-div class="container">
-<div class="row d-flex justify-content-center mt-5">
-  <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-    <div class="card py-3 px-2">
-      <div class="division">
-        <div class="row">
-          <div class="connexion"><span>Reservation n°<%= reservation.pnr %></span></div>
-          <div class="col-3"><div class="line r"></div></div>
-        </div>
-        <div class="reservation-card__body">
-          <div class="form-group">
-            <div class="reservation-card__label">User:</div>
-            <div class="reservation-card__value"><%= reservation.user_id %></div>
+<div class="container">
+  <div class="row d-flex justify-content-center mt-5">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+      <div class="card py-3 px-2">
+        <div class="division">
+          <div class="row">
+            <div class="connexion"><span>Reservation n°<%= reservation.pnr %></span></div>
+            <div class="col-3"><div class="line r"></div></div>
           </div>
-          <div class="form-group">
-            <div class="reservation-card__label">Flight:</div>
-            <div class="reservation-card__value"><%= reservation.flight.number %></div>
-          </div>
-          <div class="form-group">
-            <div class="reservation-card__label">Count:</div>
-            <div class="reservation-card__value"><%= reservation.count %></div>
-          </div>
-          <div class="form-group">
-            <div class="reservation-card__label">Type:</div>
-            <div class="reservation-card__value"><%= reservation.seat_class %></div>
+          <div class="reservation-card__body">
+            <div class="form-group">
+              <div class="reservation-card__label">User:</div>
+              <div class="reservation-card__value"><%= reservation.user_id %></div>
+            </div>
+            <div class="form-group">
+              <div class="reservation-card__label">Flight:</div>
+              <div class="reservation-card__value"><%= reservation.flight.number %></div>
+            </div>
+            <div class="form-group">
+              <div class="reservation-card__label">Count:</div>
+              <div class="reservation-card__value"><%= reservation.count %></div>
+            </div>
+            <div class="form-group">
+              <div class="reservation-card__label">Type:</div>
+              <div class="reservation-card__value"><%= reservation.seat_class %></div>
+            </div>
           </div>
         </div>
       </div>
