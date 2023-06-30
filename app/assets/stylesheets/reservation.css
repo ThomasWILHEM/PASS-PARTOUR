@@ -170,3 +170,16 @@ form a:hover {
 .texte-white{
     color: white;
 }
+
+.hidden{
+    display: none;
+}
+
+.form-group label{
+    color: white;
+}
+
+.infos{
+    display: flex;
+    justify-content: center;
+}

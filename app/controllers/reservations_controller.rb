@@ -9,6 +9,8 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/1 or /reservations/1.json
   def show
+    @show = true
+    @flight = Reservation.find(params[:id]).flight
   end
 
 
@@ -21,6 +23,7 @@ class ReservationsController < ApplicationController
   def new
     @reservation = Reservation.new
     @flight = Flight.find(params[:flight_id])
+    @user = current_user
   end
 
   def create

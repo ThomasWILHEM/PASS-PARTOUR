@@ -9,21 +9,42 @@
             <div class="col-3"><div class="line r"></div></div>
           </div>
         </div>
+        <div class="form-group">
+          <h3>Informations du vol</h3>
+          <label>Aéroport de départ : <%= @flight.departure_airport %></label><br>
+          <label>Aéroport d'arrivée : <%= @flight.arrival_airport %></label><br>
+          <label>Heure de départ : <%= @flight.departure_date.strftime("%m/%d/%Y %I:%M %p") %></label><br>
+          <label>Heure d'arrivée : <%= (@flight.departure_date + @flight.duration.minutes).strftime("%m/%d/%Y %I:%M %p") %></label><br>
+          <label>Numéro de vol : <%= @flight.number %></label><br>
+          <label>Places buisness restantes : <%= @flight.business_class_seats %></label><br>
+          <label>Places économiques restantes : <%= @flight.economy_class_seats %></label>
+        </div>
+        <div class="form-group">
+          <h3>Vos informations</h3>
+          <label>Email : <%= current_user.email %></label><br>
+        </div>
+        <div class="division">
+          <div class="row">
+            <div class="col-3"><div class="line r"></div></div>
+          </div>
+        </div>
         <%= form_with(model: @reservation, local: true) do |form| %>
-          <% if current_user %>
+          <div class="hidden">
+            <% if current_user %>
+              <div class="form-group">
+                <%= form.label :user_id %>
+                <%= form.text_field :user_id, value: current_user.id, readonly: true %>
+              </div>
+            <% end %>
             <div class="form-group">
-              <%= form.label :user_id %>
-              <%= form.text_field :user_id, value: current_user.id, readonly: true %>
+              <%= form.label :flight_id %>
+              <%= form.hidden_field :flight_id, value: @flight.id %>
+              <%= @flight.number %>
             </div>
-          <% end %>
-          <div class="form-group">
-            <%= form.label :flight_id %>
-            <%= form.hidden_field :flight_id, value: @flight.id %>
-            <%= @flight.number %>
           </div>
           <div class="form-group">
             <%= form.label :seat_number %>
-            <%= form.number_field :count, class: 'form-control' %>
+            <%= form.number_field :count, class: 'form-control', min: 1, max: 99,required: true%>
           </div>
             <% if @reservation.errors.any? %>
             <div class="form-group">

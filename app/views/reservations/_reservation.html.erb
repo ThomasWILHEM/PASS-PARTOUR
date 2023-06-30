@@ -8,21 +8,30 @@
             <div class="connexion"><span>Reservation n°<%= reservation.pnr %></span></div>
             <div class="col-3"><div class="line r"></div></div>
           </div>
+
+          <% if @show %>
+            <div class="form-group">
+              <h3>Informations du vol</h3>
+              <label>Aéroport de départ : <%= @flight.departure_airport %></label><br>
+              <label>Aéroport d'arrivée : <%= @flight.arrival_airport %></label><br>
+              <label>Heure de départ : <%= @flight.departure_date.strftime("%m/%d/%Y %I:%M %p") %></label><br>
+              <label>Heure d'arrivée : <%= (@flight.departure_date + @flight.duration.minutes).strftime("%m/%d/%Y %I:%M %p") %></label><br>
+              <label>Numéro de vol : <%= @flight.number %></label><br>
+            </div>
+            <h2>Vos informations</h2>
+          <% else %>
+            <div class="form-group">
+              <label>Numéro de vol : <%= reservation.flight.number %></label>
+            </div>
+          <% end %>
+
           <div class="reservation-card__body">
-            <div class="form-group">
-              <div class="reservation-card__label texte-white">User:</div>
-              <div class="reservation-card__value texte-white"><%= reservation.user_id %></div>
+            <div class="infos">
+              <div class="reservation-card__label texte-white">Nombre de places : </div>
+              <div class="reservation-card__value texte-white">&nbsp;<%= reservation.count %></div>
             </div>
-            <div class="form-group">
-              <div class="reservation-card__label texte-white">Flight:</div>
-              <div class="reservation-card__value texte-white"><%= reservation.flight.number %></div>
-            </div>
-            <div class="form-group">
-              <div class="reservation-card__label texte-white">Count:</div>
-              <div class="reservation-card__value texte-white"><%= reservation.count %></div>
-            </div>
-            <div class="form-group">
-              <div class="reservation-card__label texte-white">Type:</div>
-              <div class="reservation-card__value texte-white"><%= reservation.seat_class %></div>
+            <div class="infos">
+              <div class="reservation-card__label texte-white">Type : </div>
+              <div class="reservation-card__value texte-white">&nbsp;<%= reservation.seat_class %></div>
             </div>
 
