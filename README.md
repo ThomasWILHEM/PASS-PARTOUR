@@ -1,24 +1,15 @@
-# README
+# PASS-PARTOUR
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Pass-partour est un site de companie aérienne permettant de réserver un vol vers de nombreuses destinations.
 
-Things you may want to cover:
+## Etapes pour démarrer le projet : 
 
-* Ruby version
+- bundle install
+- rails db:migrate
+- rails s
 
-* System dependencies
+## Retour d'expérience
 
-* Configuration
+Nous avons eu quelques difficultées en commencant, affin de trouver les bonnes librairies et surtout pour les utiliser.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Sinon, le projet à été intéressant et cela à permit de développer les compétences en Ruby.
