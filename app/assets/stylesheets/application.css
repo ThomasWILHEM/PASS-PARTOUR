@@ -181,3 +181,7 @@ header{
     background-color: #5f428f !important;
     color: white !important;
 }
+.titrePage{
+    text-align: center;
+    margin-top: 100px;
+}

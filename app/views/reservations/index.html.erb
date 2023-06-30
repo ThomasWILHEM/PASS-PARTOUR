@@ -1,13 +1,19 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Reservations</h1>
+<h1 class="titrePage">Reservations</h1>
 
 <div id="reservations">
   <% @reservations.each do |reservation| %>
     <%= render reservation %>
-    <p>
-      <%= link_to "Show this reservation", reservation %>
-    </p>
+    <div class="form-group mt-3">
+      <%= link_to "Show this reservation", reservation , class:"btn btn-block btn-primary btn-lg"%>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
   <% end %>
 </div>
 
