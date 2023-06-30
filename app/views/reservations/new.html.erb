@@ -16,7 +16,7 @@
           <label>Heure de départ : <%= @flight.departure_date.strftime("%m/%d/%Y %I:%M %p") %></label><br>
           <label>Heure d'arrivée : <%= (@flight.departure_date + @flight.duration.minutes).strftime("%m/%d/%Y %I:%M %p") %></label><br>
           <label>Numéro de vol : <%= @flight.number %></label><br>
-          <label>Places buisness restantes : <%= @flight.business_class_seats %></label><br>
+          <label>Places affaires restantes : <%= @flight.business_class_seats %></label><br>
           <label>Places économiques restantes : <%= @flight.economy_class_seats %></label>
         </div>
         <div class="form-group">
@@ -43,7 +43,7 @@
             </div>
           </div>
           <div class="form-group">
-            <%= form.label :seat_number %>
+            <%= form.label "Nombre de places :" %>
             <%= form.number_field :count, class: 'form-control', min: 1, max: 99,required: true%>
           </div>
             <% if @reservation.errors.any? %>
@@ -59,7 +59,7 @@
             </div>
             <% end %>
           <div class="form-group">
-            <%= form.label :seat_class %>
+            <%= form.label "Classe :" %>
             <%= form.select :seat_class, [['Affaires', 'business'], ['Economique', 'economy']], class: 'form-control' %>
           </div>
           <div class="form-group mt-3">
